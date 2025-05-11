@@ -11,7 +11,7 @@ import Divider from '@mui/material/Divider';
 import Typography from '@mui/material/Typography';
 import PersonIcon from '@mui/icons-material/Person';
 import LogoutIcon from '@mui/icons-material/Logout';
-import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
+import MoreVertIcon from '@mui/icons-material/MoreVert';
 
 export function ProfileMenu() {
   const router = useRouter();
@@ -57,7 +57,7 @@ export function ProfileMenu() {
             admin@admin.com
           </Typography>
         </Box>
-        <KeyboardArrowDownIcon color="action" />
+        <MoreVertIcon color="action" />
       </Box>
 
       <Menu

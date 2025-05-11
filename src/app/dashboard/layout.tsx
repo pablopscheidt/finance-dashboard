@@ -12,6 +12,13 @@ const Container = styled.div`
 const Content = styled.main`
   flex: 1;
   padding: 2rem;
+`;
+
+const Main = styled.main`
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  padding: 2rem;
   background: #f5f7fa;
 `;
 
@@ -19,7 +26,9 @@ export default function DashboardLayout({ children }: { children: ReactNode }) {
   return (
     <Container>
       <Sidebar />
-      <Content>{children}</Content>
+      <Main>
+        <Content>{children}</Content>
+      </Main>
     </Container>
   );
 }

@@ -1,13 +1,17 @@
 import './globals.css';
 
 import type { Metadata } from "next";
-import StyledComponentsRegistry from "../../lib/registry";
 import { Roboto } from 'next/font/google'
-import { MuiProvider } from '../../lib/mui-provider';
+import { Providers } from '@/components/providers';
+
 
 export const metadata: Metadata = {
   title: "Finance Dashboard",
-  description: "A finance dashboard for your personal finance needs."
+  description: "A finance dashboard for your personal finance needs.",
+  icons: {
+    icon: "/favicon.ico",
+    shortcut: "/favicon.ico"
+  },
 };
 
 const roboto = Roboto({
@@ -23,11 +27,9 @@ export default function RootLayout({
   return (
     <html lang="en" className={roboto.className}>
       <body>
-        <MuiProvider>
-          <StyledComponentsRegistry>
-            {children}
-          </StyledComponentsRegistry>
-        </MuiProvider>
+        <Providers>
+          {children}
+        </Providers>
       </body>
     </html>
   )

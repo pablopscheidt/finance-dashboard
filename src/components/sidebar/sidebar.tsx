@@ -5,7 +5,6 @@ import { usePathname } from 'next/navigation';
 import { Divider } from '@mui/material';
 import {
     House,
-    Package,
     CreditCard,
     Users,
 } from '@phosphor-icons/react';
@@ -35,19 +34,11 @@ export function Sidebar() {
                 </NavItem>
 
                 <NavItem
-                    href="/dashboard/products"
-                    $active={isActive('/dashboard/products')}
-                >
-                    <Package size={20} />
-                    Products
-                </NavItem>
-
-                <NavItem
-                    href="/dashboard/payments"
-                    $active={isActive('/dashboard/payments')}
+                    href="/dashboard/transactions"
+                    $active={isActive('/dashboard/transactions')}
                 >
                     <CreditCard size={20} />
-                    Payments
+                    Transactions
                 </NavItem>
 
                 <NavItem

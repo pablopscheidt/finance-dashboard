@@ -13,7 +13,6 @@ export function middleware(req: NextRequest) {
   }
 
   if (pathname !== '/login' && !isLogged) {
-    console.log('Middleware:', pathname, isLogged)
     const url = req.nextUrl.clone()
     url.pathname = '/login'
     return NextResponse.redirect(url)
