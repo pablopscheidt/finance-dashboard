@@ -79,7 +79,7 @@ export function StateHorizontalBarChart({ data }: Props) {
                 <IconContainer>
                     <ChartBarHorizontal size={20} />
                 </IconContainer>
-                <Title>Top 10 States by Volume</Title>
+                <Title>States by Volume</Title>
             </HeaderTitle>
             <ChartContainer>
                 <Bar data={chartData} options={options} />

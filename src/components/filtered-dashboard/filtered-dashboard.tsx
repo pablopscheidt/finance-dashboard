@@ -5,11 +5,11 @@ import { useSelector } from 'react-redux';
 import { RootState } from '@/store';
 import { Transaction } from '@/types/transaction';
 import { CardsRow, ChartsGrid, Container } from './styles';
-import { Card } from '../charts/card';
 import { Bank, CashRegister, HandArrowDown, HandArrowUp } from '@phosphor-icons/react';
 import { ChartWrapper } from '../charts/styles';
 import dynamic from 'next/dynamic';
 import { ChartSkeleton } from '../charts/chart-skeleton';
+import { Skeleton } from '@mui/material';
 
 interface FilteredDashboardProps {
     transactions: Transaction[];
@@ -71,6 +71,24 @@ const StateHorizontalBarChart = dynamic(
             <ChartWrapper>
                 <ChartSkeleton />
             </ChartWrapper>
+        ),
+    }
+);
+
+const Card = dynamic(
+    () => import('../charts/card').then((mod) => mod.Card),
+    {
+        ssr: false,
+        loading: () => (
+            <Skeleton 
+                variant="rectangular"
+                width="100%"
+                height={111}
+                sx={{ 
+                    borderRadius: 2, 
+                    bgcolor: '#e2e8f0', 
+                }}
+            />
         ),
     }
 );

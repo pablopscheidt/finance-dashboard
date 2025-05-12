@@ -1,18 +1,14 @@
-import path from 'path';
-import fs from 'fs/promises';
-import { Transaction } from '@/types/transaction';
-import { Header } from '@/components/header/header';
 import { FilteredDashboard } from '@/components/filtered-dashboard/filtered-dashboard';
+import { fetchTransactions } from '../../../lib/transactions';
+import { Header } from '@/components/header/header';
 
 export default async function DashboardPage() {
-  const filePath = path.join(process.cwd(), 'public', 'transactions.json');
-  const raw = await fs.readFile(filePath, 'utf-8');
-  const transactions: Transaction[] = JSON.parse(raw);
+  const transactions = await fetchTransactions()
 
   return (
     <>
-      <Header />
+      <Header transactions={transactions} />
       <FilteredDashboard transactions={transactions} />
     </>
-  );
+  )
 }

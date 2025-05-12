@@ -65,7 +65,7 @@ export function TopAccountsBarChart({ data }: Props) {
                 <IconContainer>
                     <ChartBar size={20} />
                 </IconContainer>
-                <Title>Top 10 Accounts by Volume</Title>
+                <Title>Accounts by Volume</Title>
             </HeaderTitle>
             <ChartContainer>
                 <Bar data={chartData} options={options} />
