@@ -4,8 +4,8 @@ import { ProfileMenu } from '../profile-menu';
 import { usePathname } from 'next/navigation';
 import { Divider } from '@mui/material';
 import {
-    House,
-    CreditCard,
+    ChartDonut,
+    Swap,
     Users,
 } from '@phosphor-icons/react';
 import { 
@@ -29,7 +29,7 @@ export function Sidebar() {
                     href="/dashboard"
                     $active={isActive('/dashboard')}
                 >
-                    <House size={20} />
+                    <ChartDonut size={20} />
                     Dashboard
                 </NavItem>
 
@@ -37,7 +37,7 @@ export function Sidebar() {
                     href="/dashboard/transactions"
                     $active={isActive('/dashboard/transactions')}
                 >
-                    <CreditCard size={20} />
+                    <Swap size={20} />
                     Transactions
                 </NavItem>
 

@@ -5,13 +5,75 @@ import { useSelector } from 'react-redux';
 import { RootState } from '@/store';
 import { Transaction } from '@/types/transaction';
 import { CardsRow, ChartsGrid, Container } from './styles';
-import { Card } from '../card/card';
-import { StackedBarChart } from '../stacked-bar-chart/stacked-bar-chart';
-import { LineChart } from '../line-chart/line-chart';
+import { Card } from '../charts/card';
+import { Bank, CashRegister, HandArrowDown, HandArrowUp } from '@phosphor-icons/react';
+import { ChartWrapper } from '../charts/styles';
+import dynamic from 'next/dynamic';
+import { ChartSkeleton } from '../charts/chart-skeleton';
 
 interface FilteredDashboardProps {
     transactions: Transaction[];
 }
+
+const StackedBarChart = dynamic(
+    () => import('../charts/stacked-bar-chart').then((mod) => mod.StackedBarChart),
+    {
+        ssr: false,
+        loading: () => (
+            <ChartWrapper>
+                <ChartSkeleton />
+            </ChartWrapper>
+        ),
+    }
+);
+
+const LineChart = dynamic(
+    () => import('../charts/line-chart').then((mod) => mod.LineChart),
+    {
+        ssr: false,
+        loading: () => (
+            <ChartWrapper>
+                <ChartSkeleton />
+            </ChartWrapper>
+        ),
+    }
+);
+
+const IndustryDonutChart = dynamic(
+    () => import('../charts/industry-donut-chart').then((mod) => mod.IndustryDonutChart),
+    {
+        ssr: false,
+        loading: () => (
+            <ChartWrapper>
+                <ChartSkeleton />
+            </ChartWrapper>
+        ),
+    }
+);
+
+const TopAccountsBarChart = dynamic(
+    () => import('../charts/top-accounts-bar-chart').then((mod) => mod.TopAccountsBarChart),
+    {
+        ssr: false,
+        loading: () => (
+            <ChartWrapper>
+                <ChartSkeleton />
+            </ChartWrapper>
+        ),
+    }
+);
+
+const StateHorizontalBarChart = dynamic(
+    () => import('../charts/state-horizontal-bar-chart').then((mod) => mod.StateHorizontalBarChart),
+    {
+        ssr: false,
+        loading: () => (
+            <ChartWrapper>
+                <ChartSkeleton />
+            </ChartWrapper>
+        ),
+    }
+);
 
 export function FilteredDashboard({ transactions }: FilteredDashboardProps) {
     const filters = useSelector((state: RootState) => state.filters);
@@ -41,14 +103,58 @@ export function FilteredDashboard({ transactions }: FilteredDashboardProps) {
     return (
         <Container>
             <CardsRow>
-                <Card title="Total Balance" value={totalBalance} />
-                <Card title="Incomes" value={totalIncome} />
-                <Card title="Expenses" value={totalExpense} />
-                <Card title="Transactions" value={filteredTransactions.length} format='number' />
+                <Card
+                    title="Total Balance"
+                    value={totalBalance}
+                    icon={<Bank size={20} />}
+                />
+
+                <Card
+                    title="Deposits"
+                    value={totalIncome}
+                    icon={<HandArrowUp size={20} />}
+                />
+
+                <Card
+                    title="Withdraws"
+                    value={totalExpense}
+                    icon={<HandArrowDown size={20} />}
+                />
+
+                <Card
+                    title="Total Transactions"
+                    value={filteredTransactions.length}
+                    format='number'
+                    icon={<CashRegister size={20} />}
+                />
             </CardsRow>
+
             <ChartsGrid>
-                <StackedBarChart data={filteredTransactions} />
-                <LineChart data={filteredTransactions} />
+                <StackedBarChart
+                    data={filteredTransactions}
+                />
+
+                <LineChart
+                    data={filteredTransactions}
+                />
+
+                <IndustryDonutChart
+                    data={filteredTransactions}
+                    type="deposit"
+                />
+
+                <IndustryDonutChart
+                    data={filteredTransactions}
+                    type="withdraw"
+                />
+
+                <TopAccountsBarChart
+                    data={filteredTransactions}
+                />
+
+                <StateHorizontalBarChart
+                    data={filteredTransactions}
+                />
             </ChartsGrid>
         </Container>
     );

@@ -8,6 +8,10 @@ export const SidebarContainer = styled.aside`
     display: flex;
     flex-direction: column;
     padding: 1.5rem;
+    position: sticky;
+    top: 0;
+    height: 100vh;
+    overflow-y: auto;
 `;
 
 export const NavSection = styled.nav`

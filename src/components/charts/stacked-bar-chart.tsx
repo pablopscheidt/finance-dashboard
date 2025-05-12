@@ -22,8 +22,9 @@ ChartJS.register(
 );
 
 import { Transaction } from '@/types/transaction';
-import { ChartWrapper } from './styles';
 import { formatMonthLabel, getMonthKey } from '@/utils/utils';
+import { ChartContainer, ChartWrapper, HeaderTitle, IconContainer, Title } from './styles';
+import { ChartBar } from '@phosphor-icons/react';
 
 interface StackedBarChartProps {
     data: Transaction[];
@@ -65,12 +66,12 @@ export function StackedBarChart({ data }: StackedBarChartProps) {
         labels,
         datasets: [
             {
-                label: 'Revenues',
+                label: 'Deposits',
                 data: revenueValues,
                 backgroundColor: '#47f59d',
             },
             {
-                label: 'Expenses',
+                label: 'Withdraws',
                 data: expenseValues,
                 backgroundColor: '#f5476f',
             },
@@ -121,7 +122,15 @@ export function StackedBarChart({ data }: StackedBarChartProps) {
 
     return (
         <ChartWrapper>
-            <Bar data={chartData} options={chartOptions} />
+            <HeaderTitle>
+                <IconContainer>
+                    <ChartBar size={20} />
+                </IconContainer>
+                <Title>Deposits and Withdraws by Month</Title>
+            </HeaderTitle>
+            <ChartContainer>
+                <Bar data={chartData} options={chartOptions} />
+            </ChartContainer>
         </ChartWrapper>
     );
 }

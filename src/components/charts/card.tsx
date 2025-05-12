@@ -1,19 +1,28 @@
-import {
-  CardContainer,
-  Title,
-  Value
-} from "./styles";
+import { CardContainer, Value, Title, IconContainer, HeaderTitle } from "./styles";
+import { ReactNode } from "react";
+
 
 interface CardProps {
   title: string;
   value: number;
   format?: 'currency' | 'number';
+  icon?: ReactNode;
 }
 
-export function Card({ title, value, format = 'currency' }: CardProps) {
+export function Card({ 
+  title,
+  value,
+  format = 'currency',
+  icon
+}: CardProps) {
   return (
     <CardContainer>
-      <Title>{title}</Title>
+      <HeaderTitle>
+        <IconContainer>
+          {icon}
+        </IconContainer>
+        <Title>{title}</Title>
+      </HeaderTitle>
       <Value>
         {format === 'currency'
           ? value.toLocaleString('pt-BR', {

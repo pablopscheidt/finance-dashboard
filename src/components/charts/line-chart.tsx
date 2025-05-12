@@ -14,7 +14,8 @@ import {
 import { Line } from 'react-chartjs-2';
 import { Transaction } from '@/types/transaction';
 import { formatMonthLabel, getMonthKey } from '@/utils/utils';
-import { ChartWrapper } from './styles';
+import { ChartContainer, ChartWrapper, HeaderTitle, IconContainer, Title } from './styles';
+import { ChartLine } from '@phosphor-icons/react';
 
 ChartJS.register(
     CategoryScale,
@@ -86,7 +87,15 @@ export function LineChart({ data }: LineChartProps) {
 
     return (
         <ChartWrapper>
-            <Line data={chartData} options={chartOptions} />
+            <HeaderTitle>
+                <IconContainer>
+                    <ChartLine size={20} />
+                </IconContainer>
+                <Title>Transactions by Month</Title>
+            </HeaderTitle>
+            <ChartContainer>
+                <Line data={chartData} options={chartOptions} />
+            </ChartContainer>
         </ChartWrapper>
     );
 }
