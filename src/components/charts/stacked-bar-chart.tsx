@@ -80,6 +80,8 @@ export function StackedBarChart({ data }: StackedBarChartProps) {
 
     const chartOptions = {
         responsive: true,
+        maintainAspectRatio: false,
+        aspectRatio: 2,
         plugins: {
             legend: { position: 'top' as const },
             tooltip: {

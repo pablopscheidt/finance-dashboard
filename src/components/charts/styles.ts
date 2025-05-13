@@ -9,6 +9,11 @@ export const ChartWrapper = styled.div`
   width: 100%;
   height: 400px;
   margin: 0 auto;
+
+  @media screen and (max-width: 1024px) {
+    padding: 1rem;
+    max-width: 600px;
+  }
 `;
 
 export const ChartContainer = styled.div`
@@ -17,6 +22,10 @@ export const ChartContainer = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
+
+  @media screen and (max-width: 1024px) {
+    width: calc(100vw - 64px);
+  }
 `;
 
 export const CardContainer = styled.div`
@@ -25,6 +34,10 @@ export const CardContainer = styled.div`
   padding: 1.25rem 1.5rem;
   border: 1px solid #e2e8f0;
   flex: 1;
+
+  @media screen and (max-width: 1024px) {
+    width: 100%;
+  }
 `;
 
 export const Title = styled.h3`
