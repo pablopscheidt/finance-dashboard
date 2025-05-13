@@ -22,9 +22,10 @@ import { useEffect, useState } from 'react';
 
 interface HeaderProps {
   transactions: Transaction[];
+  title: string
 }
 
-export function Header({ transactions }: HeaderProps) {
+export function Header({ title, transactions }: HeaderProps) {
   const dispatch = useDispatch<AppDispatch>();
   const filters = useSelector((s: RootState) => s.filters);
   const accounts = Array.from(new Set(transactions.map(t => t.account)));
@@ -52,7 +53,7 @@ export function Header({ transactions }: HeaderProps) {
       }}
     >
       <Typography variant="h5" fontWeight={600}>
-        Dashboard
+        {title}
       </Typography>
 
       <Box

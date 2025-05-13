@@ -2,12 +2,14 @@ import { FilteredDashboard } from '@/components/filtered-dashboard/filtered-dash
 import { fetchTransactions } from '../../../lib/transactions';
 import { Header } from '@/components/header/header';
 
+export const revalidate = 60;
+
 export default async function DashboardPage() {
   const transactions = await fetchTransactions()
 
   return (
     <>
-      <Header transactions={transactions} />
+      <Header title='Dashboard' transactions={transactions} />
       <FilteredDashboard transactions={transactions} />
     </>
   )

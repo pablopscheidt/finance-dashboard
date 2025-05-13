@@ -1,6 +1,6 @@
 'use client';
 
-import React from 'react';
+import React, { useMemo } from 'react';
 import { useSelector } from 'react-redux';
 import { RootState } from '@/store';
 import { Transaction } from '@/types/transaction';
@@ -80,13 +80,13 @@ const Card = dynamic(
     {
         ssr: false,
         loading: () => (
-            <Skeleton 
+            <Skeleton
                 variant="rectangular"
                 width="100%"
                 height={111}
-                sx={{ 
-                    borderRadius: 2, 
-                    bgcolor: '#e2e8f0', 
+                sx={{
+                    borderRadius: 2,
+                    bgcolor: '#e2e8f0',
                 }}
             />
         ),
@@ -94,16 +94,20 @@ const Card = dynamic(
 );
 
 export function FilteredDashboard({ transactions }: FilteredDashboardProps) {
-    const filters = useSelector((state: RootState) => state.filters);
+    const { from, to, account, industry, state } = useSelector(
+        (state: RootState) => state.filters
+    );
 
-    const filteredTransactions = transactions.filter(transaction => {
-        if (filters.from && transaction.date < filters.from) return false; // date is before the filter
-        if (filters.to && transaction.date > filters.to) return false; // date is after the filter
-        if (filters.account && transaction.account !== filters.account) return false; // account is not in the filter
-        if (filters.industry && transaction.industry !== filters.industry) return false; // industry is not in the filter
-        if (filters.state && transaction.state !== filters.state) return false; // state is not in the filter
-        return true;
-    });
+    const filteredTransactions = useMemo(() => {
+        return transactions.filter((transaction) => {
+            if (from && transaction.date < from) return false;
+            if (to && transaction.date > to) return false;
+            if (account && transaction.account !== account) return false;
+            if (industry && transaction.industry !== industry) return false;
+            if (state && transaction.state !== state) return false;
+            return true;
+        });
+    }, [transactions, from, to, account, industry, state]);
 
     const totalBalance = filteredTransactions.reduce((sum, transaction) => {
         const value = Number(transaction.amount) / 100;
