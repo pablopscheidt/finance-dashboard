@@ -1,36 +1,91 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Finance Dashboard
 
-## Getting Started
+Esta é uma aplicação **Next.js** (v15.3.2) e **TypeScript** para visualização de dados financeiros, incluindo login, dashboard com filtros dinâmicos, gráficos e tabela de transações paginada.
 
-First, run the development server:
+---
+
+## 🏁 Início Rápido
+
+### Pré-requisitos
+
+* **Node.js** v18 ou superior
+* **npm** (ou **yarn**)
+
+### Instalação
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+# Clone este repositório
+git clone https://github.com/pablopscheidt/finance-dashboard.git
+cd finance-dashboard
+
+# Instale as dependências
+npm install
+# ou
+# yarn install
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+### Scripts úteis
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+```bash
+# Inicia o servidor de desenvolvimento (hot reload):
+npm run dev
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+# Executa lint e validações de TypeScript:
+npm run lint
 
-## Learn More
+# Executa os testes unitários (Jest + React Testing Library):
+npm test
 
-To learn more about Next.js, take a look at the following resources:
+# Cria build de produção:
+npm run build
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+# Inicia o servidor de produção local:
+npm start
+```
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+---
 
-## Deploy on Vercel
+## 🛠️ Detalhes do Projeto
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+* **Framework**: Next.js 15.3.2
+* **Linguagem**: TypeScript
+* **Estilização**: styled-components + MUI
+* **Formulários e Validação**: React Hook Form + Zod (tela de login)
+* **Gráficos**: Chart.js via `react-chartjs-2`
+* **Tabela de transações**: MUI DataGrid com paginação server-side e cache em memória
+* **Cache e ISR**: `export const revalidate` no nível de página + tags no fetch; leitura de arquivo JSON pelo Node em SSR
+* **Gerenciamento de estado**: Redux Toolkit (slice de filtros) com persistência via localStorage
+* **Autenticação**: fluxo simplificado com middleware e cookie `logged`
+* **Responsividade**: Sidebar fixa no desktop; BottomNavbar no mobile; Modal de filtros no mobile
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+
+## 📦 Deploy
+
+Este projeto está configurado para deploy automático na **Vercel**:
+
+Podendo ser acessado pelo link https://finance-dashboard-iegmb2e6q-pablopscheidts-projects.vercel.app/login
+
+---
+
+## Observações
+
+- [x]  Página de login e uma Página da Dashboard protegida pelo Login;
+- [x]  Filtros globais e dinâmicos e todo o conteúdo da página deve ser atualizado conforme os filtros aplicados;
+- [x]  Cards resumindo receitas, despesas, transações pendentes e saldo total;
+- [x]  Gráficos de barras empilhadas e Gráficos de linhas para visualização de transações, fica a seu critério quais dados trazer para estas visualizações;
+- [x]  Capacidade de filtrar transações por datas, contas, indústrias e estado;
+- [x]  Sidebar exclusiva para a página da Dashboard com opções de Logout e Home;
+- [x]  Persista a sessão e o valor do filtro sem um banco de dados;
+- [x]  Design responsivo e interativo;
+- [x]  Utilize Next.js e Typescript;
+- [x]  Faça a estilização com styled-components;
+- [x]  Inclua no README instruções de instalação do projeto e quaisquer observações relevantes;
+- [x]  Utilizar como fonte de dados o conjunto de dados disponibilizado nesse e-mail.
+- [x]  Considere fazer o deploy na Vercel ou outra plataforma, fornecendo um link de acesso;
+- [x]  Utilização de bibliotecas de componentes (MUI, Chakra, etc) e de construção de gráficos (Highcharts, Chart.js, etc);
+- [x]  Testes unitários;
+- [x]  Utilização de Cache do Next.js.
+
+---
+
+> Desenvolvido por **Pablo Pscheidt** 
