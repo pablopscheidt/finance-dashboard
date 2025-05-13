@@ -50,7 +50,7 @@ export function ProfileMenu() {
           '&:hover': { backgroundColor: 'rgba(0,0,0,0.04)' },
         }}
       >
-        <Avatar src="/avatar.png" alt="Thomas Brown" />
+        <Avatar src="/avatar.png" alt="User Avatar" />
         <Box sx={{ flexGrow: 1, textAlign: 'left' }}>
           <Typography variant="subtitle1">Pablo Pscheidt</Typography>
           <Typography variant="body2" color="text.secondary">

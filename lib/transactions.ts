@@ -1,6 +1,6 @@
 import { Transaction } from "@/types/transaction";
 
-const ORIGIN = process.env.VERCEL_URL
+export const ORIGIN = process.env.VERCEL_URL
     ? `https://${process.env.VERCEL_URL}`
     : 'http://localhost:3000';
 
